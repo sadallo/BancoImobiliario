@@ -49,6 +49,7 @@ public abstract class CasaTabuleiro {
 		return tabuleiro;
 	}
 	
+	// !!! explicar na doc trade-off memoria-eficiencia
 	public static void retornarImoveisBanco(ArrayList<CasaTabuleiro> tabuleiro, Jogador jogadorFalido)
 	{
 		for(CasaTabuleiro c: tabuleiro)

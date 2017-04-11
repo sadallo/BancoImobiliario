@@ -3,16 +3,17 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class BancoImobiliario {
-
+	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
 		int [] camposJogada;
-		int identificadorJogada, identificadorJogador, quantidadeCasasAndar, quantidadeRodadas=0;
+		int identificadorJogada=0, identificadorJogador, quantidadeCasasAndar, quantidadeRodadas=1, identificadorJogadorAnterior = 1;
 		String linhaJogada;
 		
 		BufferedReader buffTabuleiro = new BufferedReader(new FileReader("bin/tabuleiro.txt"));
 		ArrayList<CasaTabuleiro> tabuleiro = CasaTabuleiro.construirTabuleiro(buffTabuleiro);
+		buffTabuleiro.close();		
 		
 		// caco - Imprime tabuleiro
 		for(CasaTabuleiro c: tabuleiro)
@@ -30,115 +31,52 @@ public class BancoImobiliario {
 	    
 		ArrayList <Jogador> jogadores = Jogador.criarJogadores(quantidadeJogadores, saldoInicialJogador);
 		
-		
-		// Jogar
-		for(int i=0; i < quantidadeInstrucoesDeJogadas; i++)
+		// Ler instrucao de jogada e realiza-la caso o jogador esteja ainda ativo
+		for(int i=1; i <= quantidadeInstrucoesDeJogadas; i++)
 		{
 			linhaJogada = buffJogadas.readLine();
 			
-			// Para o jogo quando encontrar DUMP
-			if(linhaJogada.compareTo("DUMP") == 0)
+			// Para o jogo quando so haver um jogador ativo ou encontrar DUMP
+			if(linhaJogada.compareTo("DUMP") == 0 || Jogador.getQuantidadeJogadoresAtivos() == 1)
 				break;
-		
+			
+			// Le as informacoes de cada jogada
 			camposJogada = Auxiliar.intArrayC(linhaJogada.split(";"));
-			//identificadorJogada = camposJogada[0];
+			identificadorJogada = camposJogada[0];
 			identificadorJogador = camposJogada[1];
 			quantidadeCasasAndar = camposJogada[2];
-		    
+	
 		    // caco
-		    System.out.println("Dinheiros:");
 		    for(Jogador j: jogadores)
 				System.out.print(j.getIdentificador() + "-" + j.getSaldo() + ";");
 		    
-			System.out.println("\nTurno "+ i);
-			System.out.println("Jogador "+ identificadorJogador + " anda " + quantidadeCasasAndar);
-			// caco
-			
-		    Jogador jogadorAtual = jogadores.get(identificadorJogador-1); // verificar isso
+		    // Recupera o jogador atual
+		    Jogador jogadorAtual = jogadores.get(identificadorJogador-1);
 		    
 		    // pular jogada caso Jogador tenha sido eliminado
 		    if(jogadorAtual.isEliminado())
 		    	continue;
 		    
-		    jogadorAtual.jogar(tabuleiro, quantidadeCasasAndar);
-/*		   [ENCAPSULADO NO METODO JOGAR DA CLASSE JOGADOR, CHAMADA ACIMA]
+		    // Verifica se eh uma nova rodada
+		    if(identificadorJogador < identificadorJogadorAnterior)
+			{
+				quantidadeRodadas++;
+				System.out.println("contabilizando rodada: " + quantidadeRodadas);
+			}
 		    
-		    jogadorAtual.andar(quantidadeCasasAndar, tabuleiro.size());
-		    CasaTabuleiro casa = tabuleiro.get(jogadorAtual.getPosicaoCasaTabuleiro()-1); // verificar isso
-		    if (casa instanceof Imovel)
-		    {
-		    	Imovel imovel = (Imovel) casa;
-		    	if(imovel.getDono() == Constants.BANCO)
-		    	{
-		    		// rotina tentar comprar
-		    		
-		    		if(jogadorAtual.getSaldo() >= imovel.getValorCompra())
-	    			{
-		    			jogadorAtual.comprarImovel(imovel);		
-		    			
-		    		    // caco
-		    			System.out.println("Jogador " + jogadorAtual.getIdentificador() + " comprando imovel de " + imovel.getValorCompra());
-	    			}
-		    	}
-		    	else if(imovel.getDono() != jogadorAtual)
-		    	{
-		    		// rotina pagar aluguel   		
-		    		if(jogadorAtual.getSaldo() >= imovel.calcularValorAluguel())
-		    		{
-		    		    // caco
-		    			System.out.println("Jogador " + jogadorAtual.getIdentificador() + " pagando aluguel de " + imovel.calcularValorAluguel() + " no imovel " + imovel.getPosicao() + " do jogador " + imovel.getDono().getIdentificador());
-		    			
-		    			jogadorAtual.pagarAluguel(imovel);
-		    		}
-		    		else
-		    		{
-		    		    // caco
-		    			System.out.print("\n!!!!FALENCIA!!!!\n");
-		    			
-		    			// falencia, retornar imoveis ao banco
-		    			CasaTabuleiro.retornarImoveisBanco(tabuleiro, jogadorAtual);
-		    			
-		    			// Eliminar jogador
-		    			jogadorAtual.setEliminado(true);
-		    		}
-		    	}	    		
-		    }
-		    else if(casa instanceof PassaVez)
-		    {
-			    // caco
-		    	System.out.println("Jogador " + jogadorAtual.getIdentificador() + " passa a vez");
-		    	
-		    	jogadorAtual.passarAVez();
-		    	
-		    }
-		    else // Start
-		    {
-			    // caco
-		    	System.out.println("Jogador " + jogadorAtual.getIdentificador() + " parou no start");
-		    	
-		    	// faz nada
-		    }
-		   
-*/
-		    
-		    
-		    
-		    /*Como calcular a quantidade de rodadas? 
-		     Numero de vezes que o jogador 1 jogou? E se ele for eliminado? 
-		    if(jogadorAtual.getIdentificador() == 1)
-		    {
-		    	quantidadeRodadas++;
-		    }
-		    */
+		    System.out.println("\nTurno "+ i);
+			System.out.println("Jogador "+ identificadorJogador + " anda " + quantidadeCasasAndar);
+			// caco
+			
+		    jogadorAtual.jogar(tabuleiro, quantidadeCasasAndar);    
+		    identificadorJogadorAnterior = jogadorAtual.getIdentificador();
 		}
 		
-		buffTabuleiro.close();
 		buffJogadas.close();
-		
-		
+	
 		// Impressao das Estatisticas
 		System.out.print("\n1:"+quantidadeRodadas);
-		Jogador.ImprimirEstatisticas(jogadores);
+		Jogador.imprimirEstatisticas(jogadores);
 	}
 
 }

@@ -10,7 +10,8 @@ public class Jogador {
 	private int contadorVoltaTabuleiro;
 	private int posicaoCasaTabuleiro;
 	private boolean eliminado;
-	
+	private static int quantidadeJogadoresAtivos;
+
 	public Jogador(int identificador, double saldo)
 	{
 		this.identificador = identificador;
@@ -61,9 +62,14 @@ public class Jogador {
 	}
 
 	private void setEliminado(boolean eliminado) {
+		Jogador.quantidadeJogadoresAtivos--;
 		this.eliminado = eliminado;
 	}
 		
+	public static int getQuantidadeJogadoresAtivos() {
+		return quantidadeJogadoresAtivos;
+	}
+	
 	private void comprarImovel(Imovel imovel)
 	{
 		double valor = imovel.getValorCompra();
@@ -95,6 +101,7 @@ public class Jogador {
 	private void receber(double valor)
 	{
 		this.saldo = this.saldo + valor;
+		//
 		System.out.println("recebi "+ valor);
 
 	}
@@ -160,7 +167,7 @@ public class Jogador {
 	    		else
 	    		{
 	    		    // caco
-	    			System.out.print("\n!!!!FALENCIA!!!!\n");
+	    			System.out.print("\n!!!!FALENCIA!!!! do jogador " + this.getIdentificador());
 	    			
 	    			// falencia, retornar imoveis ao banco
 	    			CasaTabuleiro.retornarImoveisBanco(tabuleiro, this);
@@ -195,11 +202,13 @@ public class Jogador {
 		{
 			jogadores.add(new Jogador(identificador, saldoInicial));
 		}
-	
+		
+		Jogador.quantidadeJogadoresAtivos = quantidadeJogadores; 
+		
 		return jogadores;
 	}
 	
-	public static void ImprimirEstatisticas(ArrayList<Jogador> jogadores)
+	public static void imprimirEstatisticas(ArrayList<Jogador> jogadores)
 	{
 		System.out.print("\n2:");
 		for(Jogador j: jogadores)
