@@ -61,71 +61,75 @@ public class BancoImobiliario {
 		    	continue;
 		    
 		    jogadorAtual.jogar(tabuleiro, quantidadeCasasAndar);
-
-		    /// [ENCAPSULADO] pensar em encapsular esse pedaco abaixo num metodo jogar()??
+/*		   [ENCAPSULADO NO METODO JOGAR DA CLASSE JOGADOR, CHAMADA ACIMA]
 		    
-//		    jogadorAtual.andar(quantidadeCasasAndar, tabuleiro.size());
-//		    CasaTabuleiro casa = tabuleiro.get(jogadorAtual.getPosicaoCasaTabuleiro()-1); // verificar isso
-//		    if (casa instanceof Imovel)
-//		    {
-//		    	Imovel imovel = (Imovel) casa;
-//		    	if(imovel.getDono() == Constants.BANCO)
-//		    	{
-//		    		// rotina tentar comprar
-//		    		
-//		    		if(jogadorAtual.getSaldo() >= imovel.getValorCompra())
-//	    			{
-//		    			jogadorAtual.comprarImovel(imovel);		
-//		    			
-//		    		    // caco
-//		    			System.out.println("Jogador " + jogadorAtual.getIdentificador() + " comprando imovel de " + imovel.getValorCompra());
-//	    			}
-//		    	}
-//		    	else if(imovel.getDono() != jogadorAtual)
-//		    	{
-//		    		// rotina pagar aluguel   		
-//		    		if(jogadorAtual.getSaldo() >= imovel.calcularValorAluguel())
-//		    		{
-//		    		    // caco
-//		    			System.out.println("Jogador " + jogadorAtual.getIdentificador() + " pagando aluguel de " + imovel.calcularValorAluguel() + " no imovel " + imovel.getPosicao() + " do jogador " + imovel.getDono().getIdentificador());
-//		    			
-//		    			jogadorAtual.pagarAluguel(imovel);
-//		    		}
-//		    		else
-//		    		{
-//		    		    // caco
-//		    			System.out.print("\n!!!!FALENCIA!!!!\n");
-//		    			
-//		    			// falencia, retornar imoveis ao banco
-//		    			CasaTabuleiro.retornarImoveisBanco(tabuleiro, jogadorAtual);
-//		    			
-//		    			// Eliminar jogador
-//		    			jogadorAtual.setEliminado(true);
-//		    		}
-//		    	}	    		
-//		    }
-//		    else if(casa instanceof PassaVez)
-//		    {
-//			    // caco
-//		    	System.out.println("Jogador " + jogadorAtual.getIdentificador() + " passa a vez");
-//		    	
-//		    	jogadorAtual.passarAVez();
-//		    	
-//		    }
-//		    else // Start
-//		    {
-//			    // caco
-//		    	System.out.println("Jogador " + jogadorAtual.getIdentificador() + " parou no start");
-//		    	
-//		    	// faz nada
-//		    }
+		    jogadorAtual.andar(quantidadeCasasAndar, tabuleiro.size());
+		    CasaTabuleiro casa = tabuleiro.get(jogadorAtual.getPosicaoCasaTabuleiro()-1); // verificar isso
+		    if (casa instanceof Imovel)
+		    {
+		    	Imovel imovel = (Imovel) casa;
+		    	if(imovel.getDono() == Constants.BANCO)
+		    	{
+		    		// rotina tentar comprar
+		    		
+		    		if(jogadorAtual.getSaldo() >= imovel.getValorCompra())
+	    			{
+		    			jogadorAtual.comprarImovel(imovel);		
+		    			
+		    		    // caco
+		    			System.out.println("Jogador " + jogadorAtual.getIdentificador() + " comprando imovel de " + imovel.getValorCompra());
+	    			}
+		    	}
+		    	else if(imovel.getDono() != jogadorAtual)
+		    	{
+		    		// rotina pagar aluguel   		
+		    		if(jogadorAtual.getSaldo() >= imovel.calcularValorAluguel())
+		    		{
+		    		    // caco
+		    			System.out.println("Jogador " + jogadorAtual.getIdentificador() + " pagando aluguel de " + imovel.calcularValorAluguel() + " no imovel " + imovel.getPosicao() + " do jogador " + imovel.getDono().getIdentificador());
+		    			
+		    			jogadorAtual.pagarAluguel(imovel);
+		    		}
+		    		else
+		    		{
+		    		    // caco
+		    			System.out.print("\n!!!!FALENCIA!!!!\n");
+		    			
+		    			// falencia, retornar imoveis ao banco
+		    			CasaTabuleiro.retornarImoveisBanco(tabuleiro, jogadorAtual);
+		    			
+		    			// Eliminar jogador
+		    			jogadorAtual.setEliminado(true);
+		    		}
+		    	}	    		
+		    }
+		    else if(casa instanceof PassaVez)
+		    {
+			    // caco
+		    	System.out.println("Jogador " + jogadorAtual.getIdentificador() + " passa a vez");
+		    	
+		    	jogadorAtual.passarAVez();
+		    	
+		    }
+		    else // Start
+		    {
+			    // caco
+		    	System.out.println("Jogador " + jogadorAtual.getIdentificador() + " parou no start");
+		    	
+		    	// faz nada
+		    }
+		   
+*/
+		    
+		    
 		    
 		    /*Como calcular a quantidade de rodadas? 
-		     Numero de vezes que o jogador 1 jogou? E se ele for eliminado? */
+		     Numero de vezes que o jogador 1 jogou? E se ele for eliminado? 
 		    if(jogadorAtual.getIdentificador() == 1)
 		    {
 		    	quantidadeRodadas++;
 		    }
+		    */
 		}
 		
 		buffTabuleiro.close();

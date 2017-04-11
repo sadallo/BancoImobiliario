@@ -2,20 +2,15 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 
 public abstract class CasaTabuleiro {
-	private int tipoPosicao; // START, PASSE, IMOVEL
 	private int posicao;
 	
-	public CasaTabuleiro (int tipoPosicao, int posicao)
+	public CasaTabuleiro (int posicao)
 	{
-		this.tipoPosicao = tipoPosicao;
 		this.posicao = posicao;
 	}
 	
-	public int getTipo() {
-		return tipoPosicao;
-	}
-	
-	public int getPosicao() {
+	// modificar pra private depois que tirar os testes
+	public int getPosicao() { 
 		return posicao;
 	}
 	
@@ -31,8 +26,7 @@ public abstract class CasaTabuleiro {
 			CasaTabuleiro casa;
 			if(valores[Constants.TIPO_POS] == Constants.IMOVEL)
 			{
-				casa = new Imovel(valores[Constants.TIPO_POS], 
-								valores[Constants.POSICAO], 
+				casa = new Imovel(valores[Constants.POSICAO], 
 						        valores[Constants.TIPO_IMOVEL], 
 						        valores[Constants.VALOR], 
 				                valores[Constants.ALUGUEL],
@@ -40,11 +34,11 @@ public abstract class CasaTabuleiro {
 			} 
 			else if(valores[Constants.TIPO_POS] == Constants.START)
 			{
-				casa = new Start(valores[Constants.TIPO_POS], valores[Constants.POSICAO]);
+				casa = new Start(valores[Constants.POSICAO]);
 			}
 			else
 			{
-				casa = new PassaVez(valores[Constants.TIPO_POS], valores[Constants.POSICAO]);
+				casa = new PassaVez(valores[Constants.POSICAO]);
 			}
 			
 			tabuleiro.add(casa);	
@@ -61,10 +55,10 @@ public abstract class CasaTabuleiro {
 		{
 			if(c instanceof Imovel)
 			{
-				Imovel imovelAux = (Imovel) c;
-				if(imovelAux.getDono() == jogadorFalido)
+				Imovel imovel = (Imovel) c;
+				if(imovel.getDono() == jogadorFalido)
 				{
-					imovelAux.setDono(Constants.BANCO);
+					imovel.setDono(Constants.BANCO);
 				}
 			}
 		}

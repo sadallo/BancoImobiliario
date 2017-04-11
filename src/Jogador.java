@@ -24,7 +24,6 @@ public class Jogador {
 	    this.eliminado = false;
 	}
 	
-
 	public int getIdentificador() {
 		return identificador;
 	}
@@ -33,27 +32,27 @@ public class Jogador {
 		return saldo;
 	}
 	
-	public double getQuantidadeAluguelRecebido() {
+	private double getQuantidadeAluguelRecebido() {
 		return quantidadeAluguelRecebido;
 	}
 
-	public double getQuantidadeAluguelPago() {
+	private double getQuantidadeAluguelPago() {
 		return quantidadeAluguelPago;
 	}
 
-	public double getQuantidadeCompraImovel() {
+	private double getQuantidadeCompraImovel() {
 		return quantidadeCompraImovel;
 	}
 
-	public int getContadorPassaVez() {
+	private int getContadorPassaVez() {
 		return contadorPassaVez;
 	}
 
-	public int getContadorVoltaTabuleiro() {
+	private int getContadorVoltaTabuleiro() {
 		return contadorVoltaTabuleiro;
 	}
 	
-	public int getPosicaoCasaTabuleiro() {
+	private int getPosicaoCasaTabuleiro() {
 		return posicaoCasaTabuleiro;
 	}
 	
@@ -61,11 +60,11 @@ public class Jogador {
 		return eliminado;
 	}
 
-	public void setEliminado(boolean eliminado) {
+	private void setEliminado(boolean eliminado) {
 		this.eliminado = eliminado;
 	}
 		
-	public void comprarImovel(Imovel imovel)
+	private void comprarImovel(Imovel imovel)
 	{
 		double valor = imovel.getValorCompra();
 		this.pagar(valor);
@@ -75,7 +74,7 @@ public class Jogador {
 		this.quantidadeCompraImovel += valor;
 	}
 	
-	public void pagarAluguel(Imovel imovel)
+	private void pagarAluguel(Imovel imovel)
 	{
 		double valor = imovel.calcularValorAluguel();
 		this.pagar(valor);
@@ -85,7 +84,7 @@ public class Jogador {
 		this.quantidadeAluguelPago += valor;
 	}
 	
-	public void receberAluguel(double valor)
+	private void receberAluguel(double valor)
 	{
 		this.receber(valor);
 
@@ -106,7 +105,7 @@ public class Jogador {
 		System.out.println("paguei "+ valor);
 	}
 	
-	public void passarAVez()
+	private void passarAVez()
 	{
 		// Estatística
 		this.contadorPassaVez++;
@@ -192,9 +191,9 @@ public class Jogador {
 	public static ArrayList<Jogador> criarJogadores(int quantidadeJogadores, int saldoInicial) throws Exception{
 		ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
 	     
-		for (int i = 0; i < quantidadeJogadores; i++)
+		for (int identificador = 1; identificador <= quantidadeJogadores; identificador++)
 		{
-			jogadores.add(new Jogador(i+1, saldoInicial));
+			jogadores.add(new Jogador(identificador, saldoInicial));
 		}
 	
 		return jogadores;

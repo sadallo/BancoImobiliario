@@ -1,7 +1,7 @@
 
 public class Start extends CasaTabuleiro{
-	public Start(int tipoPosicao, int posicao)
+	public Start(int posicao)
 	{
-		super(tipoPosicao, posicao);
+		super(posicao);
 	}
 }

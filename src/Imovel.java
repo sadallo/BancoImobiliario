@@ -5,9 +5,9 @@ public class Imovel extends CasaTabuleiro{
 	private double taxaAluguel;
 	private Jogador dono;
 	
-	public Imovel(int tipoPosicao, int posicao, int tipoImovel, int valorCompra, int taxaAluguel, Jogador dono)
+	public Imovel(int posicao, int tipoImovel, int valorCompra, int taxaAluguel, Jogador dono)
 	{
-		super(tipoPosicao, posicao);
+		super(posicao);
 		this.valorCompra = valorCompra;
 		this.taxaAluguel = taxaAluguel;
 		this.dono = dono;
@@ -17,7 +17,7 @@ public class Imovel extends CasaTabuleiro{
 		return dono;
 	}
 
-	public void setDono(Jogador dono) {
+	protected void setDono(Jogador dono) {
 		this.dono = dono;
 	}
 
@@ -35,6 +35,6 @@ public class Imovel extends CasaTabuleiro{
 	
 	public double calcularValorAluguel()
 	{
-		return ((double)this.getValorCompra() / 100.0) * this.getTaxaAluguel();
+		return (this.getValorCompra() / 100.0) * this.getTaxaAluguel();
 	}
 }

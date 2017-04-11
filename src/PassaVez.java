@@ -1,7 +1,7 @@
 
 public class PassaVez extends CasaTabuleiro{
-	public PassaVez(int tipoPosicao, int posicao)
+	public PassaVez(int posicao)
 	{
-		super(tipoPosicao, posicao);
+		super(posicao);
 	}
 }
