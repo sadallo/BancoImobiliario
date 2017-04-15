@@ -29,10 +29,6 @@ public class Imovel extends CasaTabuleiro{
 		return taxaAluguel;
 	}
 
-	public int getTipoImovel() {
-		return tipoImovel;
-	}
-	
 	public double calcularValorAluguel()
 	{
 		return (this.getValorCompra() / 100.0) * this.getTaxaAluguel();
