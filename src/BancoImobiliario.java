@@ -8,12 +8,21 @@ public class BancoImobiliario {
 		// TODO Auto-generated method stub
 
 		int [] camposJogada;
-		int identificadorJogada=0, identificadorJogador, quantidadeCasasAndar, quantidadeRodadas=1, identificadorJogadorAnterior = 1;
+		int tamanhoTabuleiro, identificadorJogada=0, identificadorJogador;
+		int quantidadeCasasAndar, quantidadeRodadas=1, identificadorJogadorAnterior = 1;
+		int [][]camposTabuleiro;
 		String linhaJogada;
+
 		
 		BufferedReader buffTabuleiro = new BufferedReader(new FileReader("bin/tabuleiro.txt"));
-		ArrayList<CasaTabuleiro> tabuleiro = CasaTabuleiro.construirTabuleiro(buffTabuleiro);
+		tamanhoTabuleiro = Integer.parseInt(buffTabuleiro.readLine());
+		camposTabuleiro = new int[tamanhoTabuleiro][];
+		for(int i = 0; i< tamanhoTabuleiro; i++){
+			camposTabuleiro[i] = stringArrayToIntArray(buffTabuleiro.readLine().split(";"));
+		}
 		buffTabuleiro.close();		
+
+		ArrayList<CasaTabuleiro> tabuleiro = CasaTabuleiro.construirTabuleiro(camposTabuleiro, tamanhoTabuleiro);
 		
 		// caco - Imprime tabuleiro
 		for(CasaTabuleiro c: tabuleiro)
@@ -23,7 +32,7 @@ public class BancoImobiliario {
 		//
 		
 		BufferedReader buffJogadas = new BufferedReader(new FileReader("bin/jogadas.txt"));
-		int [] primeiraLinhaJogadas = Auxiliar.intArrayC(buffJogadas.readLine().split("%"));
+		int [] primeiraLinhaJogadas = stringArrayToIntArray(buffJogadas.readLine().split("%"));
 	    
 	    int quantidadeInstrucoesDeJogadas = primeiraLinhaJogadas[0];
 	    int quantidadeJogadores = primeiraLinhaJogadas[1];
@@ -41,7 +50,7 @@ public class BancoImobiliario {
 				break;
 			
 			// Le as informacoes de cada jogada
-			camposJogada = Auxiliar.intArrayC(linhaJogada.split(";"));
+			camposJogada = stringArrayToIntArray(linhaJogada.split(";")); 
 			identificadorJogada = camposJogada[0];
 			identificadorJogador = camposJogada[1];
 			quantidadeCasasAndar = camposJogada[2];
@@ -64,6 +73,7 @@ public class BancoImobiliario {
 				System.out.println("contabilizando rodada: " + quantidadeRodadas);
 			}
 		    
+		    // caco
 		    System.out.println("\nTurno "+ i);
 			System.out.println("Jogador "+ identificadorJogador + " anda " + quantidadeCasasAndar);
 			// caco
@@ -77,6 +87,17 @@ public class BancoImobiliario {
 		// Impressao das Estatisticas
 		System.out.print("\n1:"+quantidadeRodadas);
 		Jogador.imprimirEstatisticas(jogadores);
+	}
+	
+  	//Converte vetor de Strings para Array de int
+	public static int [] stringArrayToIntArray(String [] toConvert){
+		int i = 0;
+		int [] newArray = new int [toConvert.length];
+		for(String palavra: toConvert){
+			newArray[i] = Integer.parseInt(palavra);
+			i = i + 1;
+		}
+		return newArray;
 	}
 
 }

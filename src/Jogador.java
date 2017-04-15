@@ -57,6 +57,10 @@ public class Jogador {
 		return posicaoCasaTabuleiro;
 	}
 	
+	private void setPosicaoCasaTabuleiro(int posicaoCasaTabuleiro) {
+		this.posicaoCasaTabuleiro = posicaoCasaTabuleiro;
+	}
+	
 	public boolean isEliminado() {
 		return eliminado;
 	}
@@ -120,25 +124,29 @@ public class Jogador {
 	
 	private void andar(int quantidadeCasasAndar, int tamanhoTabuleiro)
 	{
-		int posicaoAnterior = this.posicaoCasaTabuleiro;
-		int posicaoNova = (posicaoAnterior+quantidadeCasasAndar) % tamanhoTabuleiro;
-		this.posicaoCasaTabuleiro = posicaoNova;
+		int posicaoAnterior = this.getPosicaoCasaTabuleiro();
+		int posicaoNova = (((posicaoAnterior-1)+quantidadeCasasAndar) % tamanhoTabuleiro) + 1;
+		this.setPosicaoCasaTabuleiro(posicaoNova);
 		
 		System.out.println("eu tava na " + posicaoAnterior + " e fui pra " + posicaoNova);
 		
-		if(posicaoNova <= posicaoAnterior)
+		int quantidadeVoltas = ((posicaoAnterior-1)+quantidadeCasasAndar) / tamanhoTabuleiro;
+		System.out.println("eu dei " + quantidadeVoltas + " voltas");		
+
+		
+		for(int i=0; i < quantidadeVoltas; i++)
 		{
 			this.receber(Constants.VALOR_AO_PASSAR_INICIO); // Passou pelo inicio
-			
-			// Estatística
-			this.contadorVoltaTabuleiro++;
 		}
+		
+		// Estatística
+		this.contadorVoltaTabuleiro += quantidadeVoltas;
 	}
 
 	public void jogar(ArrayList<CasaTabuleiro> tabuleiro, int quantidadeCasasAndar)
 	{
 		this.andar(quantidadeCasasAndar, tabuleiro.size());
-	    CasaTabuleiro casa = tabuleiro.get(this.getPosicaoCasaTabuleiro()-1); // verificar isso
+	    CasaTabuleiro casa = tabuleiro.get(this.getPosicaoCasaTabuleiro()-1);
 	    if (casa instanceof Imovel)
 	    {
 	    	Imovel imovel = (Imovel) casa;

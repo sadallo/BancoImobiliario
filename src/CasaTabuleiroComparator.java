@@ -1,7 +1,9 @@
 import java.util.Comparator;
 
 public class CasaTabuleiroComparator implements Comparator<CasaTabuleiro>{
-
+	
+	// Comparador utilizado para ordenar as posicoes do tabuleiro
+	
 	@Override
 	public int compare(CasaTabuleiro o1, CasaTabuleiro o2) {
 		// TODO Auto-generated method stub

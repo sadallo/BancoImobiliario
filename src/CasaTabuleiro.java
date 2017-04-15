@@ -1,4 +1,3 @@
-import java.io.BufferedReader;
 import java.util.ArrayList;
 
 public abstract class CasaTabuleiro {
@@ -14,31 +13,28 @@ public abstract class CasaTabuleiro {
 		return posicao;
 	}
 	
-	public static ArrayList<CasaTabuleiro> construirTabuleiro(BufferedReader buffTabuleiro) throws Exception
+	public static ArrayList<CasaTabuleiro> construirTabuleiro(int [][]camposTabuleiro, int tamanhoTabuleiro)
 	{
-		int tamanhoTabuleiro = Integer.parseInt(buffTabuleiro.readLine());
 		ArrayList<CasaTabuleiro> tabuleiro = new ArrayList<CasaTabuleiro>(tamanhoTabuleiro);
-		int []valores;
 			
 		for(int i = 0; i< tamanhoTabuleiro; i++){
-			valores = Auxiliar.intArrayC(buffTabuleiro.readLine().split(";"));
 			
 			CasaTabuleiro casa;
-			if(valores[Constants.TIPO_POS] == Constants.IMOVEL)
+			if(camposTabuleiro[i][Constants.TIPO_POS] == Constants.IMOVEL)
 			{
-				casa = new Imovel(valores[Constants.POSICAO], 
-						        valores[Constants.TIPO_IMOVEL], 
-						        valores[Constants.VALOR], 
-				                valores[Constants.ALUGUEL],
+				casa = new Imovel(camposTabuleiro[i][Constants.POSICAO], 
+						camposTabuleiro[i][Constants.TIPO_IMOVEL], 
+						camposTabuleiro[i][Constants.VALOR], 
+						camposTabuleiro[i][Constants.ALUGUEL],
 				                Constants.BANCO);
 			} 
-			else if(valores[Constants.TIPO_POS] == Constants.START)
+			else if(camposTabuleiro[i][Constants.TIPO_POS] == Constants.START)
 			{
-				casa = new Start(valores[Constants.POSICAO]);
+				casa = new Start(camposTabuleiro[i][Constants.POSICAO]);
 			}
 			else
 			{
-				casa = new PassaVez(valores[Constants.POSICAO]);
+				casa = new PassaVez(camposTabuleiro[i][Constants.POSICAO]);
 			}
 			
 			tabuleiro.add(casa);	
