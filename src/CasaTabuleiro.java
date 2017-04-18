@@ -1,7 +1,4 @@
-package PacoteTabuleiro;
-
 import java.util.ArrayList;
-import PacoteJogo.*;
 
 
 

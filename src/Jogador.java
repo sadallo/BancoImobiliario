@@ -1,7 +1,5 @@
-package PacoteJogo;
 
 import java.util.ArrayList;
-import PacoteTabuleiro.*;
 
 public class Jogador {
 	private int identificador;

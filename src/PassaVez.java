@@ -1,5 +1,3 @@
-package PacoteTabuleiro;
-
 public class PassaVez extends CasaTabuleiro{
 	public PassaVez(int posicao)
 	{

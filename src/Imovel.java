@@ -1,7 +1,3 @@
-package PacoteTabuleiro;
-
-import PacoteJogo.*;
-
 public class Imovel extends CasaTabuleiro{
 	private int tipoImovel;
 	private double valorCompra;

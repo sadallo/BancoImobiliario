@@ -1,9 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import PacoteTabuleiro.CasaTabuleiro;
-import PacoteJogo.*;
-import PacoteTabuleiro.*;
 
 public class BancoImobiliario {
 	

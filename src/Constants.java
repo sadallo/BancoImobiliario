@@ -1,4 +1,3 @@
-package PacoteJogo;
 
 public final class Constants {
 	

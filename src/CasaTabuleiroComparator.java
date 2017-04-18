@@ -1,7 +1,5 @@
-package PacoteTabuleiro;
 
 import java.util.Comparator;
-import PacoteJogo.*;
 
 
 
