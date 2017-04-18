@@ -1,4 +1,9 @@
+package PacoteTabuleiro;
+
 import java.util.Comparator;
+import PacoteJogo.*;
+
+
 
 public class CasaTabuleiroComparator implements Comparator<CasaTabuleiro>{
 	

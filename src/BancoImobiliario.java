@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import PacoteTabuleiro.CasaTabuleiro;
+import PacoteJogo.*;
+import PacoteTabuleiro.*;
 
 public class BancoImobiliario {
 	
@@ -13,8 +16,7 @@ public class BancoImobiliario {
 		int [][]camposTabuleiro;
 		String linhaJogada;
 
-		
-		BufferedReader buffTabuleiro = new BufferedReader(new FileReader("bin/testes/tabuleiro4.txt"));
+		BufferedReader buffTabuleiro = new BufferedReader(new FileReader("bin/tabuleiro.txt"));
 		tamanhoTabuleiro = Integer.parseInt(buffTabuleiro.readLine());
 		camposTabuleiro = new int[tamanhoTabuleiro][];
 		for(int i = 0; i< tamanhoTabuleiro; i++){
@@ -23,15 +25,8 @@ public class BancoImobiliario {
 		buffTabuleiro.close();		
 
 		ArrayList<CasaTabuleiro> tabuleiro = CasaTabuleiro.construirTabuleiro(camposTabuleiro, tamanhoTabuleiro);
-		
-		// caco - Imprime tabuleiro
-		for(CasaTabuleiro c: tabuleiro)
-		{
-			System.out.println(c.getPosicao());
-		}
-		//
-		
-		BufferedReader buffJogadas = new BufferedReader(new FileReader("bin/testes/jogadas4.txt"));
+
+		BufferedReader buffJogadas = new BufferedReader(new FileReader("bin/jogadas.txt"));
 		int [] primeiraLinhaJogadas = stringArrayToIntArray(buffJogadas.readLine().split("%"));
 	    
 	    int quantidadeInstrucoesDeJogadas = primeiraLinhaJogadas[0];
@@ -54,11 +49,7 @@ public class BancoImobiliario {
 			identificadorJogada = camposJogada[0];
 			identificadorJogador = camposJogada[1];
 			quantidadeCasasAndar = camposJogada[2];
-	
-		    // caco
-		    for(Jogador j: jogadores)
-				System.out.print(j.getIdentificador() + "-" + j.getSaldo() + ";");
-		    
+
 		    // Recupera o jogador atual
 		    Jogador jogadorAtual = jogadores.get(identificadorJogador-1);
 		    
@@ -70,13 +61,7 @@ public class BancoImobiliario {
 		    if(identificadorJogador < identificadorJogadorAnterior)
 			{
 				quantidadeRodadas++;
-				System.out.println("\ncontabilizando rodada: " + quantidadeRodadas);
 			}
-		    
-		    // caco
-		    System.out.println("\nTurno "+ i);
-			System.out.println("Jogador "+ identificadorJogador + " anda " + quantidadeCasasAndar);
-			// caco
 			
 		    jogadorAtual.jogar(tabuleiro, quantidadeCasasAndar);    
 		    identificadorJogadorAnterior = jogadorAtual.getIdentificador();
@@ -99,5 +84,4 @@ public class BancoImobiliario {
 		}
 		return newArray;
 	}
-
 }

@@ -1,4 +1,9 @@
+package PacoteTabuleiro;
+
 import java.util.ArrayList;
+import PacoteJogo.*;
+
+
 
 public abstract class CasaTabuleiro {
 	private int posicao;
@@ -7,8 +12,7 @@ public abstract class CasaTabuleiro {
 	{
 		this.posicao = posicao;
 	}
-	
-	// modificar pra private depois que tirar os testes
+
 	public int getPosicao() { 
 		return this.posicao;
 	}

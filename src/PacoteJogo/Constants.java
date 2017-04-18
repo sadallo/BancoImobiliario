@@ -1,3 +1,5 @@
+package PacoteJogo;
+
 public final class Constants {
 	
 	// Tipos de CasaTabuleiro

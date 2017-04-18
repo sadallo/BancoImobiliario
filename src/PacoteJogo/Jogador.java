@@ -1,4 +1,7 @@
+package PacoteJogo;
+
 import java.util.ArrayList;
+import PacoteTabuleiro.*;
 
 public class Jogador {
 	private int identificador;
@@ -105,15 +108,11 @@ public class Jogador {
 	private void receber(double valor)
 	{
 		this.saldo = this.saldo + valor;
-		//
-		System.out.println("recebi "+ valor);
-
 	}
 	
 	private void pagar(double valor)
 	{
 		this.saldo = this.saldo - valor;
-		System.out.println("paguei "+ valor);
 	}
 	
 	private void passarAVez()
@@ -127,12 +126,8 @@ public class Jogador {
 		int posicaoAnterior = this.getPosicaoCasaTabuleiro();
 		int posicaoNova = (((posicaoAnterior-1)+quantidadeCasasAndar) % tamanhoTabuleiro) + 1;
 		this.setPosicaoCasaTabuleiro(posicaoNova);
-		
-		System.out.println("eu tava na " + posicaoAnterior + " e fui pra " + posicaoNova);
-		
+				
 		int quantidadeVoltas = ((posicaoAnterior-1)+quantidadeCasasAndar) / tamanhoTabuleiro;
-		System.out.println("eu dei " + quantidadeVoltas + " voltas");		
-
 		
 		for(int i=0; i < quantidadeVoltas; i++)
 		{
@@ -159,8 +154,6 @@ public class Jogador {
     			{
 	    			this.comprarImovel(imovel);		
 	    			
-	    		    // caco
-	    			System.out.println("Jogador " + this.getIdentificador() + " comprando imovel de " + imovel.getValorCompra());
     			}
 	    	}
 	    	else if(imovel.getDono() != this)
@@ -168,16 +161,10 @@ public class Jogador {
 	    		// rotina pagar aluguel   		
 	    		if(this.getSaldo() >= imovel.calcularValorAluguel())
 	    		{
-	    		    // caco
-	    			System.out.println("Jogador " + this.getIdentificador() + " pagando aluguel de " + imovel.calcularValorAluguel() + " no imovel " + imovel.getPosicao() + " do jogador " + imovel.getDono().getIdentificador());
-	    			
 	    			this.pagarAluguel(imovel);
 	    		}
 	    		else
 	    		{
-	    		    // caco
-	    			System.out.print("\nFalencia do jogador " + this.getIdentificador());
-	    			
 	    			// falencia, retornar imoveis ao banco
 	    			CasaTabuleiro.retornarImoveisBanco(tabuleiro, this);
 	    			
@@ -188,17 +175,10 @@ public class Jogador {
 	    }
 	    else if(casa instanceof PassaVez)
 	    {
-		    // caco
-	    	System.out.println("Jogador " + this.getIdentificador() + " passa a vez");
-	    	
 	    	this.passarAVez();
-	    	
 	    }
 	    else // Start
 	    {
-		    // caco
-	    	System.out.println("Jogador " + this.getIdentificador() + " parou no start");
-	    	
 	    	// faz nada
 	    } 
 	}

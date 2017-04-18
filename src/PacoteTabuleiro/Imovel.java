@@ -1,3 +1,6 @@
+package PacoteTabuleiro;
+
+import PacoteJogo.*;
 
 public class Imovel extends CasaTabuleiro{
 	private int tipoImovel;
@@ -18,7 +21,7 @@ public class Imovel extends CasaTabuleiro{
 		return this.dono;
 	}
 
-	protected void setDono(Jogador dono) {
+	public void setDono(Jogador dono) {
 		this.dono = dono;
 	}
 
