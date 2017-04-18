@@ -147,6 +147,7 @@ public class Jogador {
 	{
 		this.andar(quantidadeCasasAndar, tabuleiro.size());
 	    CasaTabuleiro casa = tabuleiro.get(this.getPosicaoCasaTabuleiro()-1);
+
 	    if (casa instanceof Imovel)
 	    {
 	    	Imovel imovel = (Imovel) casa;
@@ -175,7 +176,7 @@ public class Jogador {
 	    		else
 	    		{
 	    		    // caco
-	    			System.out.print("\n!!!!FALENCIA!!!! do jogador " + this.getIdentificador());
+	    			System.out.print("\nFalencia do jogador " + this.getIdentificador());
 	    			
 	    			// falencia, retornar imoveis ao banco
 	    			CasaTabuleiro.retornarImoveisBanco(tabuleiro, this);

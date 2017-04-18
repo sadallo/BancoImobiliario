@@ -14,7 +14,7 @@ public class BancoImobiliario {
 		String linhaJogada;
 
 		
-		BufferedReader buffTabuleiro = new BufferedReader(new FileReader("bin/tabuleiro.txt"));
+		BufferedReader buffTabuleiro = new BufferedReader(new FileReader("bin/testes/tabuleiro4.txt"));
 		tamanhoTabuleiro = Integer.parseInt(buffTabuleiro.readLine());
 		camposTabuleiro = new int[tamanhoTabuleiro][];
 		for(int i = 0; i< tamanhoTabuleiro; i++){
@@ -31,7 +31,7 @@ public class BancoImobiliario {
 		}
 		//
 		
-		BufferedReader buffJogadas = new BufferedReader(new FileReader("bin/jogadas.txt"));
+		BufferedReader buffJogadas = new BufferedReader(new FileReader("bin/testes/jogadas4.txt"));
 		int [] primeiraLinhaJogadas = stringArrayToIntArray(buffJogadas.readLine().split("%"));
 	    
 	    int quantidadeInstrucoesDeJogadas = primeiraLinhaJogadas[0];
@@ -70,7 +70,7 @@ public class BancoImobiliario {
 		    if(identificadorJogador < identificadorJogadorAnterior)
 			{
 				quantidadeRodadas++;
-				System.out.println("contabilizando rodada: " + quantidadeRodadas);
+				System.out.println("\ncontabilizando rodada: " + quantidadeRodadas);
 			}
 		    
 		    // caco

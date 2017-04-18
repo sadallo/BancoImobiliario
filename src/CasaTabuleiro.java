@@ -10,7 +10,7 @@ public abstract class CasaTabuleiro {
 	
 	// modificar pra private depois que tirar os testes
 	public int getPosicao() { 
-		return posicao;
+		return this.posicao;
 	}
 	
 	public static ArrayList<CasaTabuleiro> construirTabuleiro(int [][]camposTabuleiro, int tamanhoTabuleiro)
